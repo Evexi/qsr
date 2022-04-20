@@ -139,7 +139,7 @@
                   "$ref": "#/components/schemas/ValidationError"
                 },
                 "examples": {
-                  "example-1": {
+                  "ValidationError": {
                     "value": {
                       "type": "ValidationError",
                       "title": "Invalid Request",
@@ -153,6 +153,12 @@
                           "message": "exceeds 50 characters"
                         }
                       ]
+                    }
+                  },
+                  "DecodeError": {
+                    "value": {
+                      "type": "DecodeError",
+                      "title": "Unable to decode request body as JSON"
                     }
                   }
                 }
