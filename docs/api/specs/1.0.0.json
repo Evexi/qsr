@@ -178,11 +178,13 @@
                 "properties": {
                   "payment_reference": {
                     "type": "string",
-                    "description": "Should be unique for a location"
+                    "description": "Should be unique for a location",
+                    "minLength": 1,
+                    "maxLength": 50
                   },
                   "metadata": {
                     "type": "object",
-                    "description": "User defined custom fields"
+                    "description": "Contains user defined fields. Max 65,535 characters in size"
                   },
                   "items": {
                     "type": "array",
@@ -191,17 +193,22 @@
                       "type": "object",
                       "properties": {
                         "name": {
-                          "type": "string"
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 25
                         },
                         "variation": {
-                          "type": "string"
+                          "type": "string",
+                          "maxLength": 255
                         },
                         "quantity": {
-                          "type": "integer"
+                          "type": "integer",
+                          "maximum": 1,
+                          "multipleOf": 2147483647
                         },
                         "modifiers": {
                           "type": "object",
-                          "description": "Contains user defined fields"
+                          "description": "Contains user defined fields. Max 65,535 characters in size"
                         }
                       },
                       "required": [
@@ -505,7 +512,8 @@
           },
           "payment_reference": {
             "type": "string",
-            "maxLength": 50
+            "maxLength": 50,
+            "minLength": 1
           },
           "status": {
             "$ref": "#/components/schemas/OrderStatus"
@@ -524,7 +532,7 @@
           },
           "metadata": {
             "type": "object",
-            "description": "Contains user defined fields"
+            "description": "Contains user defined fields. Max 65,535 characters in size"
           },
           "items": {
             "type": "array",
@@ -550,18 +558,21 @@
           },
           "name": {
             "type": "string",
-            "maxLength": 255
+            "maxLength": 255,
+            "minLength": 1
           },
           "variation": {
             "type": "string",
             "maxLength": 255
           },
           "quantity": {
-            "type": "integer"
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
           },
           "modifiers": {
             "type": "object",
-            "description": "Contains user defined fields"
+            "description": "Contains user defined fields. Max 65,535 characters in size"
           }
         },
         "required": [
