@@ -203,8 +203,8 @@
                         },
                         "quantity": {
                           "type": "integer",
-                          "maximum": 1,
-                          "multipleOf": 2147483647
+                          "maximum": 2147483647,
+                          "minimum": 1
                         },
                         "modifiers": {
                           "type": "object",
