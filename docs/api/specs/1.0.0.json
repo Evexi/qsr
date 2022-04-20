@@ -753,6 +753,7 @@
             "properties": {
               "violations": {
                 "type": "array",
+                "description": "Omitted when empty",
                 "items": {
                   "type": "object",
                   "properties": {
