@@ -272,7 +272,7 @@
             "description": "No Content"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request\n\nMeans query parameter `status` is invalid"
           },
           "401": {
             "description": "Unauthorized"
