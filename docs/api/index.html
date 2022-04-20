@@ -1,0 +1,74 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+
+<head>
+    <title>QSR Order API Documentation</title>
+    <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+    <link rel="icon" href="/qsr/docs/images/favicon.png" />
+    <style>
+        .text-right {
+            text-align: right;
+        }
+        .logo {
+            margin-left: 58px;
+        }
+        html {
+            background-color: #1e2329;
+        }
+        .icon {
+            width: 32px
+        }
+        .icon.dark {
+            filter: brightness(0.5);
+            -moz-opacity: 0.5;
+            -khtml-opacity: 0.5;
+            opacity: 0.5;
+        }
+        .pointer {
+            cursor: pointer;
+        }
+        .position-relative {
+            position: relative;
+        }
+        .display-none {
+            display: none;
+        }
+        #apidoc {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="display-none">
+    <rapi-doc id="apidoc" spec-url="https://evexi.github.io/qsr/docs/api/specs/1.0.0.json" render-style="focused" theme="dark" bg-color="#14191f" text-color="#aec2e0"
+        primary-color="#007a7e" nav-accent-color="#00a27e" allow-server-selection="false"
+        allow-spec-url-load="false" allow-spec-file-load="false" show-header="true" show-components="false"
+        default-schema-tab="schema" schema-description-expanded="true" allow-try="false">
+        <img class="logo" slot="logo" src="https://evexi.github.io/qsr/docs/images/logo.png" style="height:50px"/>
+        <div slot="header" style="width: 100%; padding-top: 0">
+            <div class="text-right position-relative">
+                <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-read.png" alt="read mode" title="Read Mode" onclick="switchReadMode()" style="position: absolute;left: 32px;top: 5px;;">
+                <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-focused.png" alt="focused mode" title="Focused Mode" onclick="switchFocusedMode()" style="top: 5px;position: absolute;left: 70px;">
+                <a target="_blank" href="https://github.com/evexi/qsr"><img class="icon" src="https://evexi.github.io/qsr/docs/images/github-light.png" alt="Github Project"></a>
+            </div>
+        </div>
+    </rapi-doc>
+
+    <script>
+        function switchReadMode() {
+            var doc = document.getElementById('apidoc');
+            doc.setAttribute('render-style','read');
+        }
+        function switchFocusedMode() {
+            var doc = document.getElementById('apidoc');
+            doc.setAttribute('render-style','focused');
+        }        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.remove('display-none');
+        });
+    </script>
+</body>
+
+</html>
