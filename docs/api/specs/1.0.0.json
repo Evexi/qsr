@@ -486,8 +486,175 @@
           {
             "QueryAPIKey": []
           }
-        ]
+        ],
+        "deprecated": true
       }
+    },
+    "/sockets": {
+      "post": {
+        "summary": "Request New Session",
+        "operationId": "post-sockets",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "socket": {
+                      "type": "string",
+                      "description": "Connection ID"
+                    },
+                    "expires_in": {
+                      "type": "number",
+                      "description": "In seconds"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Websocket"
+        ],
+        "description": "Requests a new websocket connection.\n\nThe generated socket connection id last for a short time (expires if not used) and can only be used once."
+      }
+    },
+    "/sockets/{socket}": {
+      "get": {
+        "summary": "WebSocket Connect",
+        "tags": [
+          "Websocket"
+        ],
+        "responses": {
+          "101": {
+            "description": "Switching Protocols",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SocketEvent"
+                },
+                "examples": {
+                  "Order Created": {
+                    "value": {
+                      "action": "message",
+                      "data": {
+                        "event": "create",
+                        "when": "2022-04-20T06:38:57.660333548Z",
+                        "client": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                        "location": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                        "resource": {
+                          "id": "8e3ad8b1-c074-11ec-b74b-82aa4796ca59",
+                          "client_id": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                          "location_id": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                          "number": 2,
+                          "payment_reference": "uniqueref",
+                          "status": "pending",
+                          "created_at": "2022-04-20T06:38:57.660333548Z",
+                          "items": [
+                            {
+                              "id": "8e3b3f98-c074-11ec-b74b-82aa4796ca59",
+                              "name": "Cappucino",
+                              "variation": "Small",
+                              "quantity": 0,
+                              "modifiers": {
+                                "sugar": "small",
+                                "milk": true
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "Order Updated": {
+                    "value": {
+                      "action": "message",
+                      "data": {
+                        "event": "update",
+                        "when": "2022-04-20T07:03:45.754071213Z",
+                        "client": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                        "location": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                        "resource": {
+                          "id": "8e3ad8b1-c074-11ec-b74b-82aa4796ca59",
+                          "client_id": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                          "location_id": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                          "number": 3,
+                          "payment_reference": "uniqueref",
+                          "status": "processing",
+                          "created_at": "2022-04-20T06:38:57.660333548Z"
+                        }
+                      }
+                    }
+                  },
+                  "Order Deleted": {
+                    "value": {
+                      "action": "message",
+                      "data": {
+                        "event": "delete",
+                        "when": "2022-04-20T06:47:09.101388067Z",
+                        "client": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                        "location": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                        "resource": {
+                          "id": "8e3ad8b1-c074-11ec-b74b-82aa4796ca59",
+                          "client_id": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                          "location_id": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                          "number": 2,
+                          "payment_reference": "uniqueref",
+                          "status": "processing",
+                          "created_at": "2022-04-20T06:38:57.660333548Z"
+                        }
+                      }
+                    }
+                  },
+                  "Order Overview": {
+                    "value": {
+                      "action": "message",
+                      "data": {
+                        "event": "overview",
+                        "when": "2022-04-20T06:47:09.101388067Z",
+                        "client": "93bf7ed6-bfd8-11ec-a312-82aa4796ca59",
+                        "location": "a0bd0882-bfd8-11ec-a35e-82aa4796ca59",
+                        "resource": {
+                          "pending": 1,
+                          "processing": 0,
+                          "completed": 10,
+                          "cancelled": 2
+                        }
+                      }
+                    }
+                  },
+                  "Pong": {
+                    "value": {
+                      "action": "ping"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-sockets-circuit",
+        "description": "Establishes a websocket connection to receive events whether orders are created, updated or deleted\n\n### Keeping Connection Alive\n\nTo keep the websocket connection alive, the client will need to periodically send `ping` message with the below format. it will be considered stale if no ping is sent for 30 seconds and will then be evicted. The service will reply back with a `pong` message.\n\n#### Client ping\n```\n{\n  \"action\": \"ping\"\n}\n```\n\n#### Server reply\n```\n{\n  \"action\": \"pong\"\n}\n```\n\n\n### Event messages\n\nyou can view the schema and examples of event messages at the bottom in the response section.\n\n#### Type of event messages\n\n* Order Created\n* Order Updated\n* Order Deleted\n\n\n##### Note\n\nFor each of the order events an `overview` message will be sent down as well to provide an updated overview of orders",
+        "security": [
+          {
+            "QueryAPIKey": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "socket",
+          "in": "path",
+          "required": true,
+          "description": "Socket Connection ID"
+        }
+      ]
     }
   },
   "components": {
