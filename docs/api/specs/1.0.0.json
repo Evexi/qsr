@@ -481,13 +481,12 @@
           }
         },
         "operationId": "get-socket",
-        "description": "PLEASE USE NEW ENDPOINTS",
+        "description": "Establishes a websocket connection to receive events whether orders are created, updated or deleted\n\n### Keeping Connection Alive\n\nTo keep the websocket connection alive, the client will need to periodically send `ping` message with the below format. it will be considered stale if no ping is sent for 30 seconds and will then be evicted. The service will reply back with a `pong` message.\n\n#### Client ping\n```\n{\n  \"action\": \"ping\"\n}\n```\n\n#### Server reply\n```\n{\n  \"action\": \"pong\"\n}\n```\n\n\n### Event messages\n\nyou can view the schema and examples of event messages at the bottom in the response section.\n\n#### Type of event messages\n\n* Order Created\n* Order Updated\n* Order Deleted\n\n\n##### Note\n\nFor each of the order events an `overview` message will be sent down as well to provide an updated overview of orders",
         "security": [
           {
             "QueryAPIKey": []
           }
-        ],
-        "deprecated": true
+        ]
       }
     },
     "/sockets": {
