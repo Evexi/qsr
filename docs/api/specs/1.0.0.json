@@ -492,7 +492,7 @@
     },
     "/sockets": {
       "post": {
-        "summary": "Request New Session",
+        "summary": "Request Connection",
         "operationId": "post-sockets",
         "responses": {
           "200": {
@@ -524,7 +524,7 @@
     },
     "/sockets/{socket}": {
       "get": {
-        "summary": "WebSocket Connect",
+        "summary": "Establish Connection",
         "tags": [
           "Websocket"
         ],
