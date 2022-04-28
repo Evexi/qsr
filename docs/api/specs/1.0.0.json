@@ -481,7 +481,7 @@
           }
         },
         "operationId": "get-socket",
-        "description": "Establishes a websocket connection to receive events whether orders are created, updated or deleted\n\nIMPORTANT: Please use new socket endpoints to establish a connection",
+        "description": "Establishes a websocket connection to receive events whether orders are created, updated or deleted\n\n**IMPORTANT**: Please use new socket endpoints to establish a connection",
         "security": [
           {
             "QueryAPIKey": []
