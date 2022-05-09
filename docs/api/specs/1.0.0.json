@@ -213,8 +213,16 @@
                           "minimum": 1
                         },
                         "modifiers": {
-                          "type": "object",
-                          "description": "Contains user defined fields. Max 65,535 characters in size"
+                          "description": "Contains user defined fields. Max 65,535 characters in size",
+                          "oneOf": [
+                            {
+                              "type": "array",
+                              "items": {}
+                            },
+                            {
+                              "type": "object"
+                            }
+                          ]
                         }
                       },
                       "required": [
@@ -743,8 +751,16 @@
             "maximum": 2147483647
           },
           "modifiers": {
-            "type": "object",
-            "description": "Contains user defined fields. Max 65,535 characters in size"
+            "description": "Contains user defined fields. Max 65,535 characters in size",
+            "oneOf": [
+              {
+                "type": "array",
+                "items": {}
+              },
+              {
+                "type": "object"
+              }
+            ]
           }
         },
         "required": [
