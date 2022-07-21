@@ -214,7 +214,8 @@
                         },
                         "unit_price": {
                           "type": "integer",
-                          "description": "In cents/pennies"
+                          "description": "In cents/pennies",
+                          "nullable": true
                         },
                         "modifiers": {
                           "description": "Contains user defined fields. Max 65,535 characters in size",
@@ -756,7 +757,8 @@
           },
           "unit_price": {
             "type": "integer",
-            "description": "In cents/pennies\nField not sent if empty (0 or null)"
+            "description": "In cents/pennies\nField not sent if empty (0 or null)",
+            "nullable": true
           },
           "modifiers": {
             "description": "Contains user defined fields. Max 65,535 characters in size",
