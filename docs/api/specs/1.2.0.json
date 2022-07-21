@@ -3,7 +3,7 @@
   "info": {
     "title": "Order API",
     "version": "1.2.0",
-    "description": "OpenAPI Documentation for the order service\n\n# Change Log\n\n## What's New\n---\n\n* Added new field `unit_price` to order item which represent the price of 1 item (inclusive of it's modifiers)\n* New endpoint `/orders/{order}/export` to export report as CSV\n",
+    "description": "OpenAPI Documentation for the order service\n\n# Change Log\n\n## What's New\n---\n\n* Added new field `unit_price` to order item which represent the full price of 1 item in cents/pennies (inclusive of it's modifiers)\n* New endpoint `/orders/{order}/export` to export report as CSV\n",
     "contact": {
       "name": "Evexi Team"
     }
