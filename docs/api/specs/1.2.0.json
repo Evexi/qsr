@@ -3,7 +3,7 @@
   "info": {
     "title": "Order API",
     "version": "1.2.0",
-    "description": "OpenAPI Documentation for the order service\n\n# Change Log\n\n## What's New\n---\n\n* Added new field `unit_price` to order item which represent the full price of 1 item in cents/pennies (inclusive of it's modifiers)\n* New endpoint `/orders/{order}/export` to generate and download a CSV report\n",
+    "description": "OpenAPI Documentation for the order service\n\n# Change Log\n\n## What's New\n---\n\n* Added new field `total_price` to order item which represent the full price of 1 item in cents/pennies (inclusive of it's modifiers)\n* New endpoint `/orders/{order}/export` to generate and download a CSV report\n",
     "contact": {
       "name": "Evexi Team"
     }
@@ -212,7 +212,7 @@
                           "maximum": 2147483647,
                           "minimum": 1
                         },
-                        "unit_price": {
+                        "total_price": {
                           "type": "integer",
                           "description": "In cents/pennies",
                           "nullable": true
@@ -755,9 +755,9 @@
             "minimum": 1,
             "maximum": 2147483647
           },
-          "unit_price": {
+          "total_price": {
             "type": "integer",
-            "description": "In cents/pennies\nField not sent if empty (0 or null)",
+            "description": "In cents/pennies.\n\nField not sent if empty (0 or null).",
             "nullable": true
           },
           "modifiers": {
