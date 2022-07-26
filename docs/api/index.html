@@ -4,6 +4,8 @@
 <head>
     <title>QSR Order API Documentation</title>
     <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
     <script type="module" src="https://unpkg.com/rapidoc@9.2.0/dist/rapidoc-min.js"></script>
     <link rel="icon" href="/qsr/docs/images/favicon.ico" />
     <style>
@@ -11,7 +13,8 @@
             text-align: right;
         }
         .logo {
-            margin-left: 58px;
+            /* margin-left: 58px; */
+            padding: 0px 44.5px;
             height:34px;
         }
         html {
@@ -39,6 +42,10 @@
             height: 100vh;
             width: 100%;
         }
+        select {
+            background: transparent !important;
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -49,10 +56,36 @@
         default-schema-tab="schema" schema-description-expanded="true" allow-try="false">
         <img class="logo" slot="logo" src="https://evexi.github.io/qsr/docs/images/logo-dark.svg" />
         <div slot="header" style="width: 100%; padding-top: 0">
-            <div class="text-right position-relative">
-                <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-read.png" alt="read mode" title="Read Mode" onclick="switchReadMode()" style="position: absolute;left: 32px;top: 5px;;">
+            <!-- <div class="text-right position-relative">
+                <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-read.png" alt="read mode" title="Read Mode" onclick="switchReadMode()" style="position: absolute;left: 32px;top: 5px;">
                 <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-focused.png" alt="focused mode" title="Focused Mode" onclick="switchFocusedMode()" style="top: 5px;position: absolute;left: 70px;">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
                 <a target="_blank" href="https://github.com/evexi/qsr"><img class="icon" src="https://evexi.github.io/qsr/docs/images/github-light.png" alt="Github Project"></a>
+            </div> -->
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <form class="row row-cols-lg-auto g-3 align-items-center">
+                        <div class="col-12">
+                            <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-read.png" alt="read mode" title="Read Mode" onclick="switchReadMode()">
+                            <img class="icon dark pointer" src="https://evexi.github.io/qsr/docs/api/images/mode-focused.png" alt="focused mode" title="Focused Mode" onclick="switchFocusedMode()">
+                        </div>
+                        <div class="col-12">
+                            <label class="visually-hidden" for="selectSpec">Spec</label>
+                            <select class="form-select" id="selectSpec" onchange="onSpecChanged(this)">
+                              <option value="1.0.0" selected>1.0.0</option>
+                              <option value="1.2.0">1.2.0</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-4 text-right">
+                    <a target="_blank" href="https://github.com/evexi/qsr"><img class="icon" src="https://evexi.github.io/qsr/docs/images/github-light.png" alt="Github Project"></a>
+                </div>
             </div>
         </div>
     </rapi-doc>
@@ -61,6 +94,10 @@
        
 
         setSpec(getInitialSpec())
+
+        function onSpecChanged(e) {
+            setSpec((e.value || e.options[e.selectedIndex].value))
+        }
 
         function getInitialSpec() {
             let spec = "1.0.0";
