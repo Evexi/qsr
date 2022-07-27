@@ -757,8 +757,7 @@
           },
           "total_price": {
             "type": "integer",
-            "description": "In cents/pennies.\n\nField not sent if empty (0 or null).",
-            "nullable": true
+            "description": "In cents/pennies.\n\nField not sent if empty (0 or null)."
           },
           "modifiers": {
             "description": "Contains user defined fields. Max 65,535 characters in size",
