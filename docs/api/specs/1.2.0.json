@@ -214,8 +214,8 @@
                         },
                         "total_price": {
                           "type": "integer",
-                          "description": "In cents/pennies",
-                          "nullable": true
+                          "description": "In cents/pennies.",
+                          "default": 0
                         },
                         "modifiers": {
                           "description": "Contains user defined fields. Max 65,535 characters in size",
@@ -232,7 +232,8 @@
                       },
                       "required": [
                         "name",
-                        "quantity"
+                        "quantity",
+                        "total_price"
                       ]
                     }
                   }
@@ -758,7 +759,7 @@
           },
           "total_price": {
             "type": "integer",
-            "description": "In cents/pennies.\n\nField not sent if empty (0 or null)."
+            "description": "In cents/pennies. Field omitted when value is zero."
           },
           "modifiers": {
             "description": "Contains user defined fields. Max 65,535 characters in size",
