@@ -38,11 +38,11 @@
                         "limit": {
                           "type": "integer",
                           "default": 50,
-                          "description": "Field omitted when value it zero"
+                          "description": "Field omitted when value is zero"
                         },
                         "total": {
                           "type": "integer",
-                          "description": "Field omitted when value it zero"
+                          "description": "Field omitted when value is zero"
                         }
                       }
                     },
@@ -713,6 +713,7 @@
             "type": "string",
             "description": "RFC 3339 format. Field omitted when not set.",
             "format": "date-time",
+            "nullable": true,
             "readOnly": true
           },
           "metadata": {
@@ -788,11 +789,11 @@
           "limit": {
             "type": "integer",
             "default": 50,
-            "description": "Field omitted when value it zero"
+            "description": "Field omitted when value is zero"
           },
           "total": {
             "type": "integer",
-            "description": "Field omitted when value it zero"
+            "description": "Field omitted when value is zero"
           }
         }
       },
@@ -1024,11 +1025,11 @@
                     "limit": {
                       "type": "integer",
                       "default": 50,
-                      "description": "Field omitted when value it zero"
+                      "description": "Field omitted when value is zero"
                     },
                     "total": {
                       "type": "integer",
-                      "description": "Field omitted when value it zero"
+                      "description": "Field omitted when value is zero"
                     }
                   }
                 },
