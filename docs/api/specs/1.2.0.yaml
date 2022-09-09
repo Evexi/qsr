@@ -244,6 +244,7 @@ paths:
             text/csv:
               schema:
                 type: string
+                format: binary
                 readOnly: true
               examples:
                 sample:
