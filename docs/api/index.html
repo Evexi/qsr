@@ -50,7 +50,8 @@
 </head>
 
 <body class="display-none">
-    <rapi-doc id="apidoc" spec-url="https://evexi.github.io/qsr/docs/api/specs/1.2.0.json" render-style="focused" theme="dark" bg-color="#14191f" text-color="#aec2e0"
+    <rapi-doc id="apidoc" spec-url="https://evexi.github.io/qsr/docs/api/specs/1.2.0.yaml" 
+        render-style="focused" theme="dark" bg-color="#14191f" text-color="#aec2e0"
         primary-color="#007a7e" nav-accent-color="#00a27e" allow-server-selection="false"
         allow-spec-url-load="false" allow-spec-file-load="false" show-header="true" show-components="false"
         default-schema-tab="schema" schema-description-expanded="true" allow-try="false">
@@ -96,11 +97,18 @@
         setSpec(getInitialSpec())
 
         function onSpecChanged(e) {
-            setSpec((e.value || e.options[e.selectedIndex].value))
+            setSpec((e.value || e.options[e.selectedIndex].value));
         }
 
         function getInitialSpec() {
             let spec = "1.2.0";
+            const selection = document.getElementById("selectSpec");
+            const options = Array.from(selection.options);
+            const item =  options.find(item => item.selected === true)
+            if (item) {
+                spec = item.value
+            }
+
             const params = new URLSearchParams(window.location.search);
             if (params.get('spec')) {
                 spec = params.get('spec')
@@ -110,7 +118,8 @@
 
         function setSpec(spec) {
             var doc = document.getElementById('apidoc');
-            doc.setAttribute('spec-url', 'https://evexi.github.io/qsr/docs/api/specs/' + spec + '.json');
+            spec += '.yaml?' + Date.now()
+            doc.setAttribute('spec-url', 'https://evexi.github.io/qsr/docs/api/specs/' + spec);
         }
 
         function switchReadMode() {
